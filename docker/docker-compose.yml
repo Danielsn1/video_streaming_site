@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    volumes:
+      - ../video_site:/home/app_user/server
+    command: python server/manage.py runserver 0:8080
+    ports:
+      - "8000:8080"
+    deploy:
+      restart_policy:
+        condition: any
+    depends_on:
+      - db
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: example
