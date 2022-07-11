@@ -18,4 +18,5 @@ from django.urls import include,path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('playback/', include('playback.urls'))
 ]
