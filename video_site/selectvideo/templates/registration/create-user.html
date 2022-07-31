@@ -1,0 +1,9 @@
+<form action="{% url 'selectvideo:create_user' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>Create Account</h1></legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {{ form.as_p }}
+    </fieldset>
+    <input type="submit" value="Create Account">
+    </form>
