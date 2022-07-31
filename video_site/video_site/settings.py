@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'playback.apps.PlaybackConfig',
+    'selectvideo.apps.SelectVideoConfig',
 ]
 
 MIDDLEWARE = [
@@ -116,7 +117,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-ALLOWED_HOSTS=['192.168.0.189']
+ALLOWED_HOSTS = ['192.168.0.189']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
