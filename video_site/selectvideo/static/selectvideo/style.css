@@ -1,0 +1,55 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #30c2c2;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+li a
+{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #1c7070;
+}
+
+.active {
+    background-color: blue;
+}
+
+div.container {
+    display: inline-flex;
+    justify-content: center;
+    margin: auto 1rem;
+}
+
+.card {
+    margin: 1rem;
+    padding: .25rem;
+    border: 2px inset grey;
+    text-align: center;
+    transition: border 100ms ease-in-out;
+}
+
+.card:hover {
+    border: 4px inset grey;
+}
+
+.card>a {
+    text-decoration: none;
+    color: black;
+}
+
+h1 {
+    margin: 1.5rem 2rem 0;
+}

@@ -105,6 +105,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = 'selectvideo:login'
+
+LOGIN_REDIRECT_URL = 'selectvideo:index'
+LOGOUT_REDIRECT_URL = 'selectvideo:login'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -117,7 +121,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-ALLOWED_HOSTS = ['192.168.0.189']
+ALLOWED_HOSTS = ['192.168.0.189', '108.160.232.17', 'localhost']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -128,3 +132,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Refactor later to use a internally hosted video distribution server on a
+# different docker container
+MEDIA_ROOT = BASE_DIR / "media"
+STATICFILES_DIRS = [
+    MEDIA_ROOT
+]

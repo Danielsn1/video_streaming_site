@@ -1,34 +1,37 @@
-from django.db import IntegrityError
 from django.forms import ValidationError
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
 from django.utils.translation import gettext as _
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
-from django.contrib.auth.models import User
-from .form import UserForm
+from django.shortcuts import render, redirect
+from django.db.utils import IntegrityError
+from selectvideo.form import UserForm
+from .models import Title
+import logging
 
+
+@login_required()
 def index(request):
-    return HttpResponse("Hello, world.")
+    movies = Title.objects.all
+    return render(request, 'selectvideo/index.html', {'movies': movies})
+
 
 def createUser(request):
     if request.method == "POST":
         form = UserForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            new_user = User(username=email, password=password)
-            
             try:
-                new_user.save()
-                return HttpResponseRedirect(reverse('selectvideo:index'))
-            except:
+                new_user = form.save()
+                login(request, new_user)
+                return redirect('selectvideo:index')
+            except IntegrityError:
                 form.add_error(None, error=ValidationError(
                     _("An account with that email already exists"),
                     code="duplicate"
                 ))
-            
-    
+            except:
+                logging.exception('')
+
     else:
         form = UserForm()
-    
+
     return render(request, 'registration/create-user.html', {'form': form})
