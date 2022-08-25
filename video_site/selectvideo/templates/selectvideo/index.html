@@ -1,0 +1,18 @@
+{% extends "selectvideo/base.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'selectvideo/style.css' %}">
+
+{% block content %}
+<h1>Select Content</h1>
+<div class="container">
+    {% for movie in movies %}
+    <div id="{{ movie.title_name }}" class="card">
+        <a href="">
+            <img src="{% static movie.tumbnail.name %}" alt="{{ movie.title_name }} thumbnail">
+            <br>
+            <span>{{ movie.title_name }}</span></a>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
